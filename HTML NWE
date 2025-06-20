@@ -1,3 +1,492 @@
+index.html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>عثمان الغول - المصمم الذكي | خبير التصميم الداخلي والذكاء الاصطناعي</title>
+    <meta name="description" content="دورات تدريبية متخصصة في التصميم الداخلي باستخدام الذكاء الاصطناعي مع عثمان الغول - مدرّب معتمد وخبير أكاديمي" />
+    <meta name="author" content="عثمان الغول" />
+
+    <meta property="og:title" content="عثمان الغول - المصمم الذكي" />
+    <meta property="og:description" content="دورات تدريبية متخصصة في التصميم الداخلي باستخدام الذكاء الاصطناعي" />
+    <meta property="og:type" content="website" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+tailwind.config.ts
+
+import type { Config } from "tailwindcss";
+
+export default {
+	darkMode: ["class"],
+	content: [
+		"./pages/**/*.{ts,tsx}",
+		"./components/**/*.{ts,tsx}",
+		"./app/**/*.{ts,tsx}",
+		"./src/**/*.{ts,tsx}",
+	],
+	prefix: "",
+	theme: {
+		container: {
+			center: true,
+			padding: '2rem',
+			screens: {
+				'2xl': '1400px'
+			}
+		},
+		extend: {
+			fontFamily: {
+				'cairo': ['Cairo', 'sans-serif'],
+			},
+			colors: {
+				border: 'hsl(var(--border))',
+				input: 'hsl(var(--input))',
+				ring: 'hsl(var(--ring))',
+				background: 'hsl(var(--background))',
+				foreground: 'hsl(var(--foreground))',
+				primary: {
+					DEFAULT: 'hsl(var(--primary))',
+					foreground: 'hsl(var(--primary-foreground))'
+				},
+				secondary: {
+					DEFAULT: 'hsl(var(--secondary))',
+					foreground: 'hsl(var(--secondary-foreground))'
+				},
+				destructive: {
+					DEFAULT: 'hsl(var(--destructive))',
+					foreground: 'hsl(var(--destructive-foreground))'
+				},
+				muted: {
+					DEFAULT: 'hsl(var(--muted))',
+					foreground: 'hsl(var(--muted-foreground))'
+				},
+				accent: {
+					DEFAULT: 'hsl(var(--accent))',
+					foreground: 'hsl(var(--accent-foreground))'
+				},
+				popover: {
+					DEFAULT: 'hsl(var(--popover))',
+					foreground: 'hsl(var(--popover-foreground))'
+				},
+				card: {
+					DEFAULT: 'hsl(var(--card))',
+					foreground: 'hsl(var(--card-foreground))'
+				},
+				sidebar: {
+					DEFAULT: 'hsl(var(--sidebar-background))',
+					foreground: 'hsl(var(--sidebar-foreground))',
+					primary: 'hsl(var(--sidebar-primary))',
+					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
+					accent: 'hsl(var(--sidebar-accent))',
+					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+					border: 'hsl(var(--sidebar-border))',
+					ring: 'hsl(var(--sidebar-ring))'
+				},
+				brand: {
+					blue: '#2563eb',
+					gray: '#64748b',
+					gold: '#f59e0b'
+				}
+			},
+			borderRadius: {
+				lg: 'var(--radius)',
+				md: 'calc(var(--radius) - 2px)',
+				sm: 'calc(var(--radius) - 4px)'
+			},
+			keyframes: {
+				'accordion-down': {
+					from: {
+						height: '0'
+					},
+					to: {
+						height: 'var(--radix-accordion-content-height)'
+					}
+				},
+				'accordion-up': {
+					from: {
+						height: 'var(--radix-accordion-content-height)'
+					},
+					to: {
+						height: '0'
+					}
+				},
+				'fade-in': {
+					"0%": {
+						opacity: "0",
+						transform: "translateY(20px)"
+					},
+					"100%": {
+						opacity: "1",
+						transform: "translateY(0)"
+					}
+				},
+				'slide-in-right': {
+					"0%": { transform: "translateX(100%)" },
+					"100%": { transform: "translateX(0)" }
+				}
+			},
+			animation: {
+				'accordion-down': 'accordion-down 0.2s ease-out',
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.6s ease-out',
+				'slide-in-right': 'slide-in-right 0.5s ease-out'
+			}
+		}
+	},
+	plugins: [require("tailwindcss-animate")],
+} satisfies Config;
+src/index.css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 216 100% 50%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 216 100% 50%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 216 100% 50%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border font-cairo;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  html {
+    direction: rtl;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #2563eb, #f59e0b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-gradient {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  }
+
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+}
+src/pages/Index.tsx
+
+import { useState } from "react";
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
+import About from "@/components/About";
+import Courses from "@/components/Courses";
+import Resources from "@/components/Resources";
+import Testimonials from "@/components/Testimonials";
+import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
+
+const Index = () => {
+  return (
+    <div className="min-h-screen bg-background font-cairo" dir="rtl">
+      <Header />
+      <Hero />
+      <About />
+      <Courses />
+      <Resources />
+      <Testimonials />
+      <Contact />
+      <Footer />
+    </div>
+  );
+};
+
+export default Index;
+src/components/Header.tsx
+import { useState } from "react";
+import { Button } from "./ui/button";
+import { Menu, X } from "lucide-react";
+
+const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const menuItems = [
+    { label: "الرئيسية", href: "#home" },
+    { label: "من أنا", href: "#about" },
+    { label: "الدورات", href: "#courses" },
+    { label: "الموارد", href: "#resources" },
+    { label: "الشهادات", href: "#testimonials" },
+    { label: "تواصل معنا", href: "#contact" },
+  ];
+
+  const scrollToSection = (href: string) => {
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+    setIsMenuOpen(false);
+  };
+
+  return (
+    <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b z-50">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <div className="flex items-center space-x-2 space-x-reverse">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-brand-blue to-brand-gold flex items-center justify-center">
+              <span className="text-white font-bold text-lg">ع</span>
+            </div>
+            <div className="flex flex-col">
+              <span className="font-bold text-lg gradient-text">عثمان الغول</span>
+              <span className="text-xs text-gray-500">المصمم الذكي</span>
+            </div>
+          </div>
+
+          {/* Desktop Menu */}
+          <nav className="hidden md:flex items-center space-x-8 space-x-reverse">
+            {menuItems.map((item) => (
+              <button
+                key={item.href}
+                onClick={() => scrollToSection(item.href)}
+                className="text-gray-700 hover:text-brand-blue transition-colors duration-200 font-medium"
+              >
+                {item.label}
+              </button>
+            ))}
+          </nav>
+
+          {/* CTA Button */}
+          <div className="hidden md:block">
+            <Button 
+              onClick={() => scrollToSection("#courses")}
+              className="bg-brand-blue hover:bg-brand-blue/90"
+            >
+              سجّل الآن
+            </Button>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <Button
+            variant="ghost"
+            size="sm"
+            className="md:hidden"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </Button>
+        </div>
+
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div className="md:hidden py-4 border-t">
+            <nav className="flex flex-col space-y-4">
+              {menuItems.map((item) => (
+                <button
+                  key={item.href}
+                  onClick={() => scrollToSection(item.href)}
+                  className="text-right text-gray-700 hover:text-brand-blue transition-colors duration-200 font-medium py-2"
+                >
+                  {item.label}
+                </button>
+              ))}
+              <Button 
+                onClick={() => scrollToSection("#courses")}
+                className="bg-brand-blue hover:bg-brand-blue/90 mt-4"
+              >
+                سجّل الآن
+              </Button>
+            </nav>
+          </div>
+        )}
+      </div>
+    </header>
+  );
+};
+
+export default Header;
+src/components/Hero.tsx
+
+import { Button } from "./ui/button";
+import { ArrowDown } from "lucide-react";
+
+const Hero = () => {
+  const scrollToSection = (href: string) => {
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  return (
+    <section id="home" className="hero-gradient pt-20 pb-16 lg:pb-24">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+          {/* Content */}
+          <div className="flex-1 text-center lg:text-right animate-fade-in">
+            <div className="mb-6">
+              <span className="inline-block px-4 py-2 bg-brand-gold/10 text-brand-gold rounded-full text-sm font-medium mb-4">
+                🎓 مدرّب معتمد في التصميم الذكي
+              </span>
+            </div>
+            
+            <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+              مرحباً، أنا{" "}
+              <span className="gradient-text">عثمان الغول</span>
+            </h1>
+            
+            <h2 className="text-xl lg:text-2xl text-gray-600 mb-6 font-medium">
+              خبير التصميم الداخلي والذكاء الاصطناعي
+            </h2>
+            
+            <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+              أساعد المصممين والمهندسين على إتقان استخدام الذكاء الاصطناعي في التصميم الداخلي
+              من خلال دورات تدريبية متخصصة ومحتوى تعليمي عالي الجودة
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <Button 
+                size="lg" 
+                className="bg-brand-blue hover:bg-brand-blue/90 text-white px-8 py-4 text-lg hover-lift"
+                onClick={() => scrollToSection("#courses")}
+              >
+                استكشف الدورات
+              </Button>
+              <Button 
+                variant="outline" 
+                size="lg"
+                className="border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white px-8 py-4 text-lg hover-lift"
+                onClick={() => scrollToSection("#about")}
+              >
+                تعرّف علي أكثر
+              </Button>
+            </div>
+
+            {/* Stats */}
+            <div className="flex flex-col sm:flex-row gap-8 mt-12 justify-center lg:justify-start">
+              <div className="text-center lg:text-right">
+                <div className="text-3xl font-bold gradient-text">500+</div>
+                <div className="text-gray-600">طالب متدرب</div>
+              </div>
+              <div className="text-center lg:text-right">
+                <div className="text-3xl font-bold gradient-text">10+</div>
+                <div className="text-gray-600">دورة تدريبية</div>
+              </div>
+              <div className="text-center lg:text-right">
+                <div className="text-3xl font-bold gradient-text">98%</div>
+                <div className="text-gray-600">رضا الطلاب</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Image */}
+          <div className="flex-1 max-w-lg animate-slide-in-right">
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-brand-blue/20 to-brand-gold/20 rounded-3xl transform rotate-6"></div>
+              <img
+                src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                alt="عثمان الغول - خبير التصميم الداخلي والذكاء الاصطناعي"
+                className="relative rounded-3xl shadow-2xl hover-lift w-full"
+              />
+              <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-2xl shadow-lg">
+                <div className="flex items-center gap-3">
+                  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                  <span className="text-sm font-medium text-gray-700">متاح للتدريب</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="text-center mt-16 lg:mt-20">
+          <button
+            onClick={() => scrollToSection("#about")}
+            className="inline-flex items-center gap-2 text-gray-500 hover:text-brand-blue transition-colors duration-200 group"
+          >
+            <span className="text-sm">اكتشف المزيد</span>
+            <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform duration-200" />
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Hero;
+src/components/About.tsx
 
 import { Card, CardContent } from "./ui/card";
 import { Badge } from "./ui/badge";
@@ -118,3 +607,887 @@ const About = () => {
 };
 
 export default About;
+src/components/Courses.tsx
+
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Button } from "./ui/button";
+import { Badge } from "./ui/badge";
+import { Calendar, User, Book } from "lucide-react";
+
+const Courses = () => {
+  const courses = [
+    {
+      id: 1,
+      title: "التصميم الداخلي بالذكاء الاصطناعي - المستوى الأساسي",
+      description: "تعلم أساسيات استخدام الذكاء الاصطناعي في التصميم الداخلي من الصفر",
+      duration: "24 ساعة",
+      students: "150+ طالب",
+      level: "مبتدئ",
+      price: "299",
+      features: [
+        "مقدمة في أدوات الذكاء الاصطناعي",
+        "Midjourney للمصممين",
+        "ChatGPT في التصميم",
+        "مشاريع تطبيقية",
+        "شهادة معتمدة"
+      ],
+      nextSession: "15 يناير 2024",
+      image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      id: 2,
+      title: "التصميم الاحترافي بـ Midjourney",
+      description: "احترف استخدام Midjourney لإنشاء تصاميم داخلية مذهلة",
+      duration: "18 ساعة",
+      students: "200+ طالب",
+      level: "متوسط",
+      price: "399",
+      features: [
+        "تقنيات Prompt المتقدمة",
+        "التحكم في الإضاءة والألوان",
+        "إنشاء مودبورد احترافي",
+        "تطوير الهوية البصرية",
+        "ورشة عملية مكثفة"
+      ],
+      nextSession: "22 يناير 2024",
+      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      id: 3,
+      title: "الذكاء الاصطناعي للمكاتب الهندسية",
+      description: "برنامج تدريبي مخصص للمكاتب والشركات لتطوير فرق العمل",
+      duration: "40 ساعة",
+      students: "50+ مكتب",
+      level: "للمؤسسات",
+      price: "تواصل معنا",
+      features: [
+        "تدريب مخصص للفريق",
+        "استشارات تقنية",
+        "تطوير أدوات خاصة",
+        "متابعة دورية",
+        "دعم فني مستمر"
+      ],
+      nextSession: "حسب الطلب",
+      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+    }
+  ];
+
+  const handleEnroll = (courseTitle: string) => {
+    // This would typically integrate with a payment system
+    alert(`سيتم توجيهك لصفحة التسجيل في دورة: ${courseTitle}`);
+  };
+
+  return (
+    <section id="courses" className="py-20 bg-gray-50">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">الدورات التدريبية</h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            اختر الدورة التي تناسب مستواك وأهدافك المهنية في رحلة إتقان التصميم الذكي
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8">
+          {courses.map((course) => (
+            <Card key={course.id} className="hover-lift border-0 shadow-lg bg-white">
+              <div className="relative">
+                <img
+                  src={course.image}
+                  alt={course.title}
+                  className="w-full h-48 object-cover rounded-t-lg"
+                />
+                <Badge 
+                  className="absolute top-4 right-4 bg-brand-gold text-white"
+                >
+                  {course.level}
+                </Badge>
+              </div>
+              
+              <CardHeader className="pb-4">
+                <CardTitle className="text-lg leading-tight mb-2">
+                  {course.title}
+                </CardTitle>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  {course.description}
+                </p>
+              </CardHeader>
+
+              <CardContent className="space-y-4">
+                {/* Course Info */}
+                <div className="flex items-center justify-between text-sm text-gray-500">
+                  <div className="flex items-center gap-1">
+                    <Book className="w-4 h-4" />
+                    <span>{course.duration}</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <User className="w-4 h-4" />
+                    <span>{course.students}</span>
+                  </div>
+                </div>
+
+                {/* Features */}
+                <div className="space-y-2">
+                  <h4 className="font-semibold text-gray-900 text-sm">محتوى الدورة:</h4>
+                  <ul className="space-y-1">
+                    {course.features.slice(0, 3).map((feature, index) => (
+                      <li key={index} className="text-sm text-gray-600 flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 bg-brand-blue rounded-full"></span>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Next Session */}
+                <div className="flex items-center gap-2 text-sm text-brand-blue bg-brand-blue/5 p-3 rounded-lg">
+                  <Calendar className="w-4 h-4" />
+                  <span>الدفعة القادمة: {course.nextSession}</span>
+                </div>
+
+                {/* Price & CTA */}
+                <div className="pt-4 border-t">
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-2xl font-bold gradient-text">
+                      {course.price === "تواصل معنا" ? course.price : `$${course.price}`}
+                    </span>
+                    {course.price !== "تواصل معنا" && (
+                      <span className="text-sm text-gray-500">لكامل الدورة</span>
+                    )}
+                  </div>
+                  
+                  <Button 
+                    className="w-full bg-brand-blue hover:bg-brand-blue/90"
+                    onClick={() => handleEnroll(course.title)}
+                  >
+                    {course.price === "تواصل معنا" ? "تواصل معنا" : "سجّل الآن"}
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        {/* Call to Action */}
+        <div className="text-center mt-16">
+          <div className="bg-white p-8 rounded-2xl shadow-lg max-w-2xl mx-auto">
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              هل تحتاج دورة مخصصة؟
+            </h3>
+            <p className="text-gray-600 mb-6">
+              نقدم برامج تدريبية مخصصة للشركات والمكاتب الهندسية حسب احتياجاتكم
+            </p>
+            <Button 
+              size="lg"
+              variant="outline"
+              className="border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white"
+            >
+              تواصل للاستفسار
+            </Button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Courses;
+src/components/Resources.tsx
+
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Button } from "./ui/button";
+import { FileText, Book, Youtube } from "lucide-react";
+
+const Resources = () => {
+  const resources = [
+    {
+      id: 1,
+      title: "دليل الذكاء الاصطناعي للمصممين",
+      description: "دليل شامل يحتوي على أكثر من 50 صفحة من النصائح والتقنيات المتقدمة",
+      type: "PDF",
+      icon: <FileText className="w-6 h-6" />,
+      size: "2.5 MB",
+      color: "bg-red-500"
+    },
+    {
+      id: 2,
+      title: "مجموعة Prompts للتصميم الداخلي",
+      description: "أكثر من 100 prompt جاهز للاستخدام في Midjourney و ChatGPT",
+      type: "مجموعة",
+      icon: <Book className="w-6 h-6" />,
+      size: "500+ Prompt",
+      color: "bg-green-500"
+    },
+    {
+      id: 3,
+      title: "فيديوهات تعليمية مجانية",
+      description: "سلسلة فيديوهات قصيرة تشرح أساسيات استخدام أدوات الذكاء الاصطناعي",
+      type: "فيديو",
+      icon: <Youtube className="w-6 h-6" />,
+      size: "10 فيديوهات",
+      color: "bg-blue-500"
+    }
+  ];
+
+  const tools = [
+    {
+      name: "Midjourney",
+      description: "أفضل أداة لإنشاء الصور والتصاميم بالذكاء الاصطناعي",
+      url: "https://midjourney.com",
+      category: "توليد الصور"
+    },
+    {
+      name: "ChatGPT",
+      description: "مساعد ذكي لكتابة الوصوفات والأفكار التصميمية",
+      url: "https://chat.openai.com",
+      category: "مساعد نصي"
+    },
+    {
+      name: "Stable Diffusion",
+      description: "أداة مفتوحة المصدر لتوليد الصور",
+      url: "https://stability.ai",
+      category: "توليد الصور"
+    },
+    {
+      name: "Leonardo AI",
+      description: "منصة شاملة للتصميم بالذكاء الاصطناعي",
+      url: "https://leonardo.ai",
+      category: "تصميم شامل"
+    }
+  ];
+
+  const handleDownload = (resourceTitle: string) => {
+    alert(`سيتم تحميل: ${resourceTitle}`);
+  };
+
+  return (
+    <section id="resources" className="py-20 bg-white">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">الموارد المجانية</h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            مجموعة مختارة من الأدوات والموارد المجانية لمساعدتك في رحلة التعلم
+          </p>
+        </div>
+
+        {/* Free Resources */}
+        <div className="grid md:grid-cols-3 gap-8 mb-16">
+          {resources.map((resource) => (
+            <Card key={resource.id} className="hover-lift border-0 shadow-lg">
+              <CardHeader className="text-center pb-4">
+                <div className={`${resource.color} w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-white`}>
+                  {resource.icon}
+                </div>
+                <CardTitle className="text-lg mb-2">{resource.title}</CardTitle>
+                <p className="text-sm text-gray-600">{resource.description}</p>
+              </CardHeader>
+              
+              <CardContent className="text-center">
+                <div className="mb-4">
+                  <span className="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
+                    {resource.size}
+                  </span>
+                </div>
+                <Button 
+                  className="w-full bg-brand-blue hover:bg-brand-blue/90"
+                  onClick={() => handleDownload(resource.title)}
+                >
+                  تحميل مجاني
+                </Button>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        {/* Tools & Applications */}
+        <div className="bg-gray-50 rounded-3xl p-8 lg:p-12">
+          <div className="text-center mb-12">
+            <h3 className="text-3xl font-bold text-gray-900 mb-4">
+              أدوات وتطبيقات مُوصى بها
+            </h3>
+            <p className="text-lg text-gray-600">
+              أهم الأدوات التي نستخدمها في دوراتنا التدريبية
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {tools.map((tool, index) => (
+              <Card key={index} className="hover-lift border-0 shadow-md bg-white">
+                <CardContent className="p-6">
+                  <div className="mb-4">
+                    <h4 className="font-semibold text-gray-900 mb-2">{tool.name}</h4>
+                    <span className="text-xs text-brand-blue bg-brand-blue/10 px-2 py-1 rounded-full">
+                      {tool.category}
+                    </span>
+                  </div>
+                  <p className="text-sm text-gray-600 mb-4 leading-relaxed">
+                    {tool.description}
+                  </p>
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="w-full text-xs border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white"
+                    onClick={() => window.open(tool.url, '_blank')}
+                  >
+                    زيارة الموقع
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* Newsletter Signup */}
+        <div className="text-center mt-16">
+          <div className="bg-gradient-to-r from-brand-blue to-brand-gold p-8 rounded-2xl text-white max-w-2xl mx-auto">
+            <h3 className="text-2xl font-bold mb-4">
+              اشترك في النشرة البريدية
+            </h3>
+            <p className="mb-6 opacity-90">
+              احصل على أحدث الموارد والنصائح في التصميم الذكي
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+              <input
+                type="email"
+                placeholder="بريدك الإلكتروني"
+                className="flex-1 px-4 py-3 rounded-lg text-gray-900"
+              />
+              <Button 
+                className="bg-white text-brand-blue hover:bg-gray-100"
+              >
+                اشترك الآن
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Resources;
+src/components/Testimonials.tsx
+
+import { Card, CardContent } from "./ui/card";
+import { Badge } from "./ui/badge";
+
+const Testimonials = () => {
+  const testimonials = [
+    {
+      id: 1,
+      name: "أحمد محمد",
+      role: "مهندس معماري",
+      company: "مكتب الإبداع الهندسي",
+      content: "دورة عثمان الغول غيرت نظرتي تماماً للتصميم. تعلمت كيف أستخدم الذكاء الاصطناعي لإنتاج تصاميم مذهلة في وقت قياسي.",
+      rating: 5,
+      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+    },
+    {
+      id: 2,
+      name: "فاطمة أحمد",
+      role: "مصممة داخلية",
+      company: "استوديو النور",
+      content: "المحتوى التعليمي رائع والطريقة في الشرح واضحة ومفهومة. أصبحت أستخدم Midjourney بشكل احترافي في جميع مشاريعي.",
+      rating: 5,
+      image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+    },
+    {
+      id: 3,
+      name: "محمد العلي",
+      role: "مدير مكتب هندسي",
+      company: "مجموعة العمران",
+      content: "التدريب المؤسسي الذي قدمه عثمان لفريقنا كان استثمار رائع. زادت إنتاجية الفريق بنسبة 40% في مشاريع التصميم.",
+      rating: 5,
+      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+    }
+  ];
+
+  const certifications = [
+    {
+      title: "شهادة جامعة النجاح الوطنية",
+      description: "في التصميم الداخلي والذكاء الاصطناعي",
+      year: "2024"
+    },
+    {
+      title: "مؤسسة حديقة الإبداع",
+      description: "شراكة في التدريب المؤسسي",
+      year: "منذ 2023"
+    },
+    {
+      title: "اعتماد Adobe",
+      description: "خبير معتمد في Creative Suite",
+      year: "2022"
+    }
+  ];
+
+  const renderStars = (rating: number) => {
+    return Array.from({ length: 5 }, (_, i) => (
+      <span
+        key={i}
+        className={`text-lg ${
+          i < rating ? "text-brand-gold" : "text-gray-300"
+        }`}
+      >
+        ★
+      </span>
+    ));
+  };
+
+  return (
+    <section id="testimonials" className="py-20 bg-gray-50">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">الشهادات والمراجع</h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            آراء الطلاب والشركاء والاعتمادات الأكاديمية
+          </p>
+        </div>
+
+        {/* Student Testimonials */}
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8 mb-16">
+          {testimonials.map((testimonial) => (
+            <Card key={testimonial.id} className="hover-lift border-0 shadow-lg bg-white">
+              <CardContent className="p-6">
+                {/* Rating */}
+                <div className="flex items-center mb-4">
+                  {renderStars(testimonial.rating)}
+                </div>
+
+                {/* Content */}
+                <blockquote className="text-gray-700 mb-6 leading-relaxed">
+                  "{testimonial.content}"
+                </blockquote>
+
+                {/* Author */}
+                <div className="flex items-center gap-4">
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    className="w-12 h-12 rounded-full object-cover"
+                  />
+                  <div>
+                    <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
+                    <p className="text-sm text-gray-600">{testimonial.role}</p>
+                    <p className="text-xs text-brand-blue">{testimonial.company}</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        {/* Certifications & Partnerships */}
+        <div className="bg-white rounded-3xl p-8 lg:p-12 shadow-lg">
+          <div className="text-center mb-12">
+            <h3 className="text-3xl font-bold text-gray-900 mb-4">
+              الاعتمادات والشراكات
+            </h3>
+            <p className="text-lg text-gray-600">
+              اعتمادات أكاديمية ومهنية تضمن جودة التدريب
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {certifications.map((cert, index) => (
+              <div key={index} className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-brand-blue to-brand-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-white font-bold text-xl">🏆</span>
+                </div>
+                <h4 className="font-semibold text-gray-900 mb-2">{cert.title}</h4>
+                <p className="text-gray-600 mb-2">{cert.description}</p>
+                <Badge variant="secondary" className="bg-brand-blue/10 text-brand-blue">
+                  {cert.year}
+                </Badge>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Statistics */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mt-16 text-center">
+          <div>
+            <div className="text-4xl font-bold gradient-text mb-2">500+</div>
+            <div className="text-gray-600">طالب متدرب</div>
+          </div>
+          <div>
+            <div className="text-4xl font-bold gradient-text mb-2">50+</div>
+            <div className="text-gray-600">مكتب هندسي</div>
+          </div>
+          <div>
+            <div className="text-4xl font-bold gradient-text mb-2">98%</div>
+            <div className="text-gray-600">معدل الرضا</div>
+          </div>
+          <div>
+            <div className="text-4xl font-bold gradient-text mb-2">15+</div>
+            <div className="text-gray-600">دورة مكتملة</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Testimonials;
+src/components/Contact.tsx
+
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Textarea } from "./ui/textarea";
+import { Mail, Phone, User } from "lucide-react";
+
+const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    interest: "",
+    message: ""
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Here you would typically send the data to your backend
+    alert("شكراً لتواصلك معنا! سنرد عليك في أقرب وقت ممكن.");
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      interest: "",
+      message: ""
+    });
+  };
+
+  const contactMethods = [
+    {
+      icon: <Mail className="w-6 h-6" />,
+      title: "البريد الإلكتروني",
+      value: "omar@smartdesigner.academy",
+      action: "إرسال رسالة"
+    },
+    {
+      icon: <Phone className="w-6 h-6" />,
+      title: "واتساب",
+      value: "+970 59 123 4567",
+      action: "تواصل واتساب"
+    },
+    {
+      icon: <User className="w-6 h-6" />,
+      title: "استشارة مجانية",
+      value: "احجز جلسة 30 دقيقة",
+      action: "احجز الآن"
+    }
+  ];
+
+  return (
+    <section id="contact" className="py-20 bg-white">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">تواصل معنا</h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            هل لديك استفسار أو تريد معرفة المزيد عن دوراتنا؟ نحن هنا لمساعدتك
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+          {/* Contact Form */}
+          <Card className="border-0 shadow-lg">
+            <CardHeader>
+              <CardTitle className="text-2xl text-gray-900">نموذج التواصل السريع</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                    الاسم الكامل *
+                  </label>
+                  <Input
+                    id="name"
+                    name="name"
+                    type="text"
+                    required
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    placeholder="اكتب اسمك الكامل"
+                    className="w-full"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                    البريد الإلكتروني *
+                  </label>
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    placeholder="example@email.com"
+                    className="w-full"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                    رقم الهاتف
+                  </label>
+                  <Input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    placeholder="+970 59 123 4567"
+                    className="w-full"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="interest" className="block text-sm font-medium text-gray-700 mb-2">
+                    مجال الاهتمام
+                  </label>
+                  <select
+                    id="interest"
+                    name="interest"
+                    value={formData.interest}
+                    onChange={handleInputChange}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent"
+                  >
+                    <option value="">اختر مجال الاهتمام</option>
+                    <option value="basic-course">الدورة الأساسية</option>
+                    <option value="midjourney-course">دورة Midjourney</option>
+                    <option value="corporate-training">التدريب المؤسسي</option>
+                    <option value="consultation">استشارة فنية</option>
+                    <option value="custom-course">دورة مخصصة</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                    رسالتك
+                  </label>
+                  <Textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    placeholder="اكتب رسالتك أو استفسارك هنا..."
+                    className="w-full h-32 resize-none"
+                  />
+                </div>
+
+                <Button 
+                  type="submit"
+                  className="w-full bg-brand-blue hover:bg-brand-blue/90 text-white py-3"
+                >
+                  إرسال الرسالة
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+
+          {/* Contact Methods */}
+          <div className="space-y-8">
+            {contactMethods.map((method, index) => (
+              <Card key={index} className="hover-lift border-0 shadow-lg">
+                <CardContent className="p-6">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-brand-blue/10 rounded-full flex items-center justify-center text-brand-blue">
+                      {method.icon}
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-gray-900 mb-2">{method.title}</h3>
+                      <p className="text-gray-600 mb-3">{method.value}</p>
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        className="border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white"
+                      >
+                        {method.action}
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+
+            {/* Corporate Training CTA */}
+            <Card className="bg-gradient-to-r from-brand-blue to-brand-gold text-white border-0">
+              <CardContent className="p-8 text-center">
+                <h3 className="text-2xl font-bold mb-4">تدريب مؤسسي مخصص</h3>
+                <p className="mb-6 opacity-90">
+                  هل تدير مكتب هندسي أو شركة تصميم؟ نقدم برامج تدريبية مخصصة لفريقك
+                </p>
+                <Button 
+                  className="bg-white text-brand-blue hover:bg-gray-100"
+                >
+                  احصل على عرض خاص
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+
+        {/* FAQ Section */}
+        <div className="mt-20 max-w-4xl mx-auto">
+          <h3 className="text-2xl font-bold text-gray-900 text-center mb-12">
+            الأسئلة الشائعة
+          </h3>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
+              <h4 className="font-semibold text-gray-900 mb-2">هل الدورات مناسبة للمبتدئين؟</h4>
+              <p className="text-gray-600 text-sm">نعم، لدينا دورات تبدأ من المستوى الأساسي وتناسب جميع المستويات.</p>
+            </div>
+            <div>
+              <h4 className="font-semibold text-gray-900 mb-2">كم مدة الدورة التدريبية؟</h4>
+              <p className="text-gray-600 text-sm">تتراوح مدة الدورات من 18 إلى 40 ساعة تدريبية حسب نوع الدورة.</p>
+            </div>
+            <div>
+              <h4 className="font-semibold text-gray-900 mb-2">هل أحصل على شهادة معتمدة؟</h4>
+              <p className="text-gray-600 text-sm">نعم، تحصل على شهادة معتمدة من جامعة النجاح الوطنية عند إتمام الدورة.</p>
+            </div>
+            <div>
+              <h4 className="font-semibold text-gray-900 mb-2">هل يمكن التدريب اونلاين؟</h4>
+              <p className="text-gray-600 text-sm">نعم، نوفر خيارات التدريب المباشر أونلاين بالإضافة للتدريب الحضوري.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Contact;
+src/components/Footer.tsx
+
+import { Mail, Phone } from "lucide-react";
+
+const Footer = () => {
+  const quickLinks = [
+    { label: "الرئيسية", href: "#home" },
+    { label: "من أنا", href: "#about" },
+    { label: "الدورات", href: "#courses" },
+    { label: "الموارد", href: "#resources" },
+  ];
+
+  const services = [
+    "التدريب الأساسي",
+    "دورة Midjourney",
+    "التدريب المؤسسي",
+    "الاستشارات الفنية",
+  ];
+
+  const scrollToSection = (href: string) => {
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  return (
+    <footer className="bg-gray-900 text-white py-16">
+      <div className="container mx-auto px-4">
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8">
+          {/* Brand */}
+          <div className="lg:col-span-1">
+            <div className="flex items-center space-x-2 space-x-reverse mb-6">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-brand-blue to-brand-gold flex items-center justify-center">
+                <span className="text-white font-bold text-xl">ع</span>
+              </div>
+              <div className="flex flex-col">
+                <span className="font-bold text-xl">عثمان الغول</span>
+                <span className="text-sm text-gray-400">المصمم الذكي</span>
+              </div>
+            </div>
+            <p className="text-gray-400 leading-relaxed mb-6">
+              خبير في التصميم الداخلي والذكاء الاصطناعي، مدرّب معتمد يساعد المصممين على إتقان التقنيات الحديثة.
+            </p>
+            <div className="space-y-2">
+              <div className="flex items-center gap-3 text-sm">
+                <Mail className="w-4 h-4 text-brand-blue" />
+                <span>omar@smartdesigner.academy</span>
+              </div>
+              <div className="flex items-center gap-3 text-sm">
+                <Phone className="w-4 h-4 text-brand-blue" />
+                <span>+970 59 123 4567</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h3 className="font-semibold text-lg mb-6">روابط سريعة</h3>
+            <ul className="space-y-3">
+              {quickLinks.map((link) => (
+                <li key={link.href}>
+                  <button
+                    onClick={() => scrollToSection(link.href)}
+                    className="text-gray-400 hover:text-white transition-colors duration-200"
+                  >
+                    {link.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Services */}
+          <div>
+            <h3 className="font-semibold text-lg mb-6">خدماتنا</h3>
+            <ul className="space-y-3">
+              {services.map((service) => (
+                <li key={service} className="text-gray-400">
+                  {service}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Newsletter */}
+          <div>
+            <h3 className="font-semibold text-lg mb-6">ابق على تواصل</h3>
+            <p className="text-gray-400 mb-4">
+              اشترك للحصول على أحدث الموارد والنصائح
+            </p>
+            <div className="flex flex-col gap-3">
+              <input
+                type="email"
+                placeholder="بريدك الإلكتروني"
+                className="px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:border-brand-blue"
+              />
+              <button className="bg-brand-blue hover:bg-brand-blue/90 text-white px-6 py-3 rounded-lg transition-colors duration-200">
+                اشترك
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="border-t border-gray-800 mt-12 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <p className="text-gray-400 text-sm">
+              © 2024 عثمان الغول - المصمم الذكي. جميع الحقوق محفوظة.
+            </p>
+            <div className="flex items-center gap-6 mt-4 md:mt-0">
+              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200 text-sm">
+                سياسة الخصوصية
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200 text-sm">
+                شروط الاستخدام
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
