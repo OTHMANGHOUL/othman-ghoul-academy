@@ -1,0 +1,120 @@
+
+import { Card, CardContent } from "./ui/card";
+import { Badge } from "./ui/badge";
+
+const About = () => {
+  const achievements = [
+    {
+      title: "شراكة أكاديمية",
+      description: "بالتعاون مع جامعة النجاح الوطنية",
+      icon: "🎓"
+    },
+    {
+      title: "مدرّب معتمد",
+      description: "في مجال التصميم الداخلي والذكاء الاصطناعي",
+      icon: "📜"
+    },
+    {
+      title: "خبرة متقدمة",
+      description: "أكثر من 8 سنوات في التصميم والتدريب",
+      icon: "⭐"
+    },
+    {
+      title: "مؤسسة الإبداع",
+      description: "شريك في مؤسسة حديقة الإبداع للتدريب",
+      icon: "🏢"
+    }
+  ];
+
+  const skills = [
+    "التصميم الداخلي",
+    "الذكاء الاصطناعي",
+    "Midjourney",
+    "Adobe Creative Suite",
+    "3D Max",
+    "AutoCAD",
+    "SketchUp",
+    "التدريب المؤسسي"
+  ];
+
+  return (
+    <section id="about" className="py-20 bg-white">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">من أنا</h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            مهندس وخبير في التصميم الداخلي، متخصص في دمج التقنيات الحديثة 
+            والذكاء الاصطناعي لإنشاء تصاميم استثنائية
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Content */}
+          <div className="animate-fade-in">
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">
+              رحلتي في عالم التصميم الذكي
+            </h3>
+            
+            <div className="space-y-4 text-gray-600 leading-relaxed">
+              <p>
+                بدأت رحلتي في التصميم الداخلي منذ أكثر من 8 سنوات، وخلال هذه المدة 
+                طورت خبرة واسعة في استخدام أحدث التقنيات والأدوات التصميمية.
+              </p>
+              
+              <p>
+                مع ظهور الذكاء الاصطناعي، أدركت إمكانياته الهائلة في تحويل مجال التصميم، 
+                فقررت التخصص في هذا المجال وتطوير برامج تدريبية متقدمة.
+              </p>
+              
+              <p>
+                اليوم، أقوم بتدريب المصممين والمهندسين في جامعة النجاح الوطنية ومؤسسات 
+                أخرى على كيفية الاستفادة من الذكاء الاصطناعي لإنتاج تصاميم مبتكرة وعصرية.
+              </p>
+            </div>
+
+            {/* Skills */}
+            <div className="mt-8">
+              <h4 className="text-lg font-semibold text-gray-900 mb-4">مجالات الخبرة</h4>
+              <div className="flex flex-wrap gap-2">
+                {skills.map((skill) => (
+                  <Badge 
+                    key={skill}
+                    variant="secondary" 
+                    className="bg-brand-blue/10 text-brand-blue hover:bg-brand-blue hover:text-white transition-colors duration-200"
+                  >
+                    {skill}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Achievements Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 animate-fade-in">
+            {achievements.map((achievement, index) => (
+              <Card key={index} className="hover-lift border-0 shadow-lg">
+                <CardContent className="p-6 text-center">
+                  <div className="text-3xl mb-4">{achievement.icon}</div>
+                  <h4 className="font-semibold text-gray-900 mb-2">{achievement.title}</h4>
+                  <p className="text-sm text-gray-600">{achievement.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* Quote */}
+        <div className="mt-16 text-center">
+          <div className="max-w-4xl mx-auto bg-gradient-to-r from-brand-blue/5 to-brand-gold/5 p-8 rounded-2xl">
+            <blockquote className="text-2xl font-medium text-gray-800 italic mb-4">
+              "الذكاء الاصطناعي ليس مجرد أداة، بل شريك إبداعي يمكنه أن يحول رؤيتك التصميمية إلى واقع مذهل"
+            </blockquote>
+            <cite className="text-brand-blue font-semibold">- عثمان الغول</cite>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default About;
